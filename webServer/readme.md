@@ -1,1 +1,2 @@
-### in this folder goes the complete server code probably in java :/
+### This is all the Web Server requirements and code
+which probably has to be in java, wich is not good :/
