@@ -1,0 +1,29 @@
+
+@font-face {
+  font-family:"babas" ; src: url("../BebasNeue.otf")
+}
+.net{
+  font-size:3em;
+  font-family: "babas";
+  padding: 0 0;
+  margin: 0 0;  
+  color: white;
+
+}
+
+/*           CLASES           */
+.header{
+  height:4em;
+  padding: .5em 2em 0 2em;
+  background-color:#B9090B;
+}
+
+.pure-menu-link{
+  color: white;
+  padding-bottom:0;
+}
+.pure-menu-link:hover{
+  background-color:#B9090B;
+  color: #ddd;
+  text-decoration:underline;
+}
