@@ -48,12 +48,29 @@ table {
 	border-spacing: 0;
 }
 
-/* END OF RESET */
-
+/* BASIC CONFIGURATION */
 
 @font-face {
   font-family:"babas" ; src: url("../BebasNeue.otf")
 }
+
+h1{
+  font-size:2em;
+  font-weight:bold;
+}
+h2{
+  font-size:1.5em;
+  font-weight:bold;
+  margin:.5em 0;
+}
+h3{
+  font-size:1.2em;
+  font-weight:bold;
+  margin:.5em 0;
+}
+
+
+
 .net{
   font-size:3em;
   font-family: "babas";
@@ -84,4 +101,7 @@ table {
   border-right: solid 1px #ccc  ;
   padding: 1em 1.5em;  
   box-sizing: border-box;
+}
+.movie{
+  padding-top:1em;
 }
