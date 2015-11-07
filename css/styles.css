@@ -70,7 +70,18 @@ h3{
 }
 
 
-
+/*           CLASES           */
+/* profile */
+.profile-picture{
+  margin:auto;
+  width:250px;
+}
+.profile-name{
+  border-bottom:1px solid #ccc;
+}
+.profile-description{
+  font-size:.9em;
+}
 .net{
   font-size:3em;
   font-family: "babas";
@@ -79,8 +90,6 @@ h3{
   color: white;
 
 }
-
-/*           CLASES           */
 .header{
   height:4em;
   padding: .5em 2em 0 2em;
@@ -97,8 +106,6 @@ h3{
   text-decoration:underline;
 }
 .main-container{
-  border-left: solid 1px #ccc  ;
-  border-right: solid 1px #ccc  ;
   padding: 1em 1.5em;  
   box-sizing: border-box;
 }
