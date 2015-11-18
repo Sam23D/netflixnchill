@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <link href="css/styles.css" rel="stylesheet"> 
+    <link href="css/styles.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.leanmodal/1.1/jquery.leanmodal.min.js"></script>
     <script src="js/main.js"></script>
   </head>
   <body >
+    <div id="login-box" class="login-popup">
+        <a href="#" class="close">Back</a>
+        <form method="post" class="signin" action="#">
+            <fieldset class="textbox">
+            <label class="username">
+            <span>Usuario</span>
+            <input id="username" name="username" value="" type="text" autocomplete="on" placeholder="Usuario">
+            </label>
+            <label class="password">
+            <span>Password</span>
+            <input id="password" name="password" value="" type="password" placeholder="Password">
+            </label>
+            <button class="submit button" type="button">Login</button>
+            </fieldset>
+        </form>
+    </div>
+    <div id="register-box" class="login-popup">
+        <a href="#" class="close">Back</a>
+        <form method="post" class="signin" action="#">
+            <fieldset class="textbox">
+                <label class="username">
+                    <span>Usuario</span>
+                    <input id="new_user" name="username" value="" type="text" autocomplete="on" placeholder="Usuario">
+                </label>
+                <label class="password">
+                    <span>Password</span>
+                    <input id="pass1" name="password" value="" type="password" placeholder="Password">
+                </label>
+                <label class="password">
+                    <span>Password</span>
+                    <input id="pass2" name="password" value="" type="password" placeholder="Confirma Password">
+                </label>
+                <button class="submit button" type="button">Registrate</button>
+            </fieldset>
+        </form>
+    </div>
+
     <div class="pure-g" >
       <div class="pure-menu pure-menu-horizontal pure-u-1 header">
         <a href="#" class="pure-menu-heading net">NETFLIX N' CHILL</a>
         <ul class="pure-menu-list">
-          <li class="pure-menu-item menu-floored"><a class="pure-menu-link" href="#">Iniciar Sesion</a></li>
+          <li class="pure-menu-item menu-floored"><a class="pure-menu-link login-window" href="#login-box">Iniciar Sesion</a></li>
+            <li class="pure-menu-item menu-floored"><a class="pure-menu-link register-window" href="#register-box">Registrate</a></li>
         </ul>
       </div>
       <!--<div class="pure-u-1">
@@ -21,11 +61,12 @@
       </div> -->
       <div class="fullscreen-bg">
     <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-  
+
         <source src="video/chill.mp4" type="video/mp4">
 
     </video>
-</div>
     </div>
+</div>
+
   </body>
 </html>
