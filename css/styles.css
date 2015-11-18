@@ -178,3 +178,30 @@ form.signin input::-webkit-input-placeholder {
 .button:hover {
     background: #ddd;
 }
+
+.displayuser {
+    color: white;
+    padding: 18px 10px 10px 10px;
+
+}
+
+.movies-container {
+    background-color: #333333;
+    height:auto;
+    color:white;
+}
+
+.title {
+
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.movie {
+    width:8em;
+    -webkit-box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
+    box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
+    display:block;
+    margin: 0 auto 30px;
+}
