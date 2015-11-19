@@ -30,10 +30,17 @@
 
 .close{
     color: white;
+	font-size:12px;
     padding-bottom:0;
+	float:right;
+	margin: 1px 0px;
 }
 .close {
     text-decoration: none;
+}
+.close:hover{
+	font-size:14px;
+	margin:0px;
 }
 .fullscreen-bg {
     position: fixed;
@@ -128,18 +135,17 @@ form.signin .textbox span {
 }
 
 form.signin p, form.signin span {
-    color: #999;
+    color: #fff;
     font-size: 15px;
     line-height: 18px;
 }
 
 form.signin .textbox input {
-    background: #666666;
-    border-bottom: 1px solid #333;
-    border-left: 1px solid #000;
-    border-right: 1px solid #333;
-    border-top: 1px solid #000;
-    color: #fff;
+    background: transparent;
+    border: 2px #fff solid;
+	color: #fff;
+	text-align:center;
+	font-weight:bold;
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -159,20 +165,11 @@ form.signin input::-webkit-input-placeholder {
 }
 
 .button {
-    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#dddddd));
-    background: -o-linear-gradient(top, #f3f3f3, #dddddd);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3', EndColorStr='#dddddd');
-    border-color: #000;
-    border-width: 1px;
-    border-radius: 4px 4px 4px 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    color: #333;
-    cursor: pointer;
-    display: inline-block;
-    padding: 6px 6px 4px;
-    margin-top: 10px;
-    width: 214px;
+	background-color:#fff;
+	width:100%;
+	border-radius:3px;
+	border:0px;
+	height:35px;
 }
 
 .button:hover {
