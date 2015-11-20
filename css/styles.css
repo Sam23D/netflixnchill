@@ -189,7 +189,6 @@ form.signin input::-webkit-input-placeholder {
 }
 
 .title {
-
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
@@ -201,4 +200,12 @@ form.signin input::-webkit-input-placeholder {
     box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
     display:block;
     margin: 0 auto 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+
+}
+.selected {
+    outline: 2px dashed #DEDEDE;
+    outline-offset: 3px;
 }
