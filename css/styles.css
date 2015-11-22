@@ -1,4 +1,9 @@
-
+body{
+    background-color: #333333;
+}
+input, select{
+  color:black;
+}
 @font-face {
   font-family:"babas" ; src: url("../BebasNeue.otf")
 }
@@ -12,6 +17,11 @@
 }
 
 /*           CLASES           */
+.pure-g div{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .header{
   height:4em;
   padding: .5em 2em 0 2em;
@@ -174,6 +184,7 @@ form.signin input::-webkit-input-placeholder {
 
 .button:hover {
     background: #ddd;
+    
 }
 
 .displayuser {
@@ -182,12 +193,59 @@ form.signin input::-webkit-input-placeholder {
 
 }
 
+/* PROFILE */
+.profile-container{
+  padding:2em;
+  margin-top:2em;
+  background-color:#ddd;
+  color: black;
+  
+}
+.name{
+  font-size: 18px;
+  margin:0.5em 0;
+  
+}
+.tel{
+  font-size:16px;
+}
+/* MATCHED PEOPLE */
+.matched{
+  border-top:solid 1px #aaa;
+  padding:1em 0;
+}
+.matched span{
+  font-size:12px;
+  float:right;
+  padding: 0 2px;
+}
+.matched p{
+  display:inline;
+}
+.chill-with{
+  color:#e74c3c;
+}
+.not-really{
+  color:#47a1de;
+}
+.whats{
+  color:#27ae60;
+}
+/* MOVIES */
 .movies-container {
-    background-color: #333333;
     height:auto;
     color:white;
 }
-
+.movies-billboard{
+  padding:0;
+  margin-top:2em;
+}
+.search-movie{
+  color:black;
+  font-family: "babas";
+  text-align: right;
+  
+}
 .title {
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -199,13 +257,14 @@ form.signin input::-webkit-input-placeholder {
     -moz-box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
     box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
     display:block;
-    margin: 0 auto 30px;
+    margin: 0 auto ;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
 
 }
 .selected {
-    outline: 2px dashed #DEDEDE;
+    outline: 2px dashed #27ae60;
     outline-offset: 3px;
+    
 }
