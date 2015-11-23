@@ -46,6 +46,41 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     }
     
   };
+  $scope.getMatchedBy = function(){
+    //$scope.matchedBy = get all matchedTo users
+    req = {
+      url : serverRoute + "matchedBy/" + $scope.getCurrentUserId()  ,
+      method: "GET",
+    };
+    console.log("GET-");
+    console.log(req);
+    $http(req).then(
+      function(response){
+      console.log(response.data);
+      $scope.matchedBy = response.data; 
+    },function(err){
+      console.log(err);
+    });
+    
+  };
+  $scope.getMatchedTo = function(){
+    //$scope.matchedTo = get all matchedBy users
+    req = {
+      url : serverRoute + "matchedTo/" + $scope.getCurrentUserId()  ,
+      method: "GET",
+    };
+    console.log("GET-");
+    console.log(req);
+    $http(req).then(
+      function(response){
+      console.log(response);
+      $scope.matchedTo = response.data;
+    },function(err){
+      console.log(err);
+    });
+  };
+  $scope.getMatchedTo();
+  $scope.getMatchedBy();
   $scope.matchTo = function( usrId ){
     req = {
       url : serverRoute + "matchedTo",
@@ -93,6 +128,9 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     // post user for chill
     console.log("agregado "+ name);
     $scope.matchTo($scope.getUserByName(name).id);
+    $scope.getMatchedTo();
+    $scope.getMatchedBy();
+  
   };
   $scope.unchill = function( name ){
     for( i =0 ; i < $scope.matchedTo.length ; i++  ){
@@ -102,6 +140,9 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
       }
     }
     $scope.unmatchTo($scope.getUserByName(name).id);
+    $scope.getMatchedTo();
+    $scope.getMatchedBy();
+  
     //delete user for chill
   };
   // MATCHED VERIFICATION METHODS
@@ -141,39 +182,7 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     });
   };
   $scope.getMatchedUsers();
-  $scope.getMatchedBy = function(){
-    //$scope.matchedBy = get all matchedTo users
-    req = {
-      url : serverRoute + "matchedBy/" + $scope.getCurrentUserId()  ,
-      method: "GET",
-    };
-    console.log("GET-");
-    console.log(req);
-    $http(req).then(
-      function(response){
-      console.log(response.data);
-      //$scope.matchedBy = response.data; 
-    },function(err){
-      console.log(err);
-    });
-    
-  };
-  $scope.getMatchedTo = function(){
-    //$scope.matchedTo = get all matchedBy users
-    req = {
-      url : serverRoute + "matchedTo/" + $scope.getCurrentUserId()  ,
-      method: "GET",
-    };
-    console.log("GET-");
-    console.log(req);
-    $http(req).then(
-      function(response){
-      console.log(response);
-      //$scope.matchedTo = response.data;
-    },function(err){
-      console.log(err);
-    });
-  };
+  
   
   $scope.test = function(  ){
     $scope.getMatchedTo( );
