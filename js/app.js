@@ -1,11 +1,23 @@
 
 var matchApp = angular.module("matchApp", ["ngCookies"]);
 var api = "16fba1d36fc694ecddc5dfba908bcd8e" ;
-
-matchApp.controller('matchController', function($scope){
+var user = "" ;
+  var serverRoute = "http://52.24.232.83:8080/netflixandchill/";
+  
+matchApp.controller('matchController', function($scope, $http, $cookies){
+  
+  $scope.getCurrentUserId = function(){
+    //console.log( "Current user is: " + $cookies.getObject("user"));
+    return $cookies.getObject("user");
+    
+  };
+  $scope.getCurrentUserId(
+    
+    );
   
   $scope.currentUser = { name:"Samuel Blanco", tel:"526142406190", mail : "samuel.drach@gmail.com" };
-  
+  //$scope.currentUser = user;
+  console.log( $scope.currentUser );
   // { name:"", tel:"", img:""}
   $scope.allUsers = [
       { name:"Samuel Blanco",   tel:"526142406190",       mail:"samuel@mail.com"},
@@ -79,20 +91,70 @@ matchApp.controller('matchController', function($scope){
   };
   $scope.getMatchedUsers = function(){
     //$scope.allUsers = get all matched users
+    
   };
   $scope.getMatchedBy = function(){
     //$scope.matchedBy = get all matchedTo users
+    req = {
+      url : serverRoute + "matchedBy/" + $scope.getCurrentUserId()  ,
+      method: "GET",
+    };
+    console.log("GET-");
+    console.log(req);
+    $http(req).then(
+      function(result){
+      console.log(result);
+    },function(err){
+      console.log(err);
+    });
+    
   };
   $scope.getMatchedTo = function(){
     //$scope.matchedTo = get all matchedBy users
+    req = {
+      url : serverRoute + "matchedTo/" + $scope.getCurrentUserId()  ,
+      method: "GET",
+    };
+    console.log("GET-");
+    console.log(req);
+    $http(req).then(
+      function(result){
+      console.log(result);
+    },function(err){
+      console.log(err);
+    });
   };
-  
+  $scope.matchTo = function( usrId ){
+    req = {
+      url : serverRoute + "matchedTo",
+      method : "POST",
+      data : { 
+        "fromId" : $scope.getCurrentUserId(),
+        "toId" : usrId
+      }
+      
+    };
+    
+    $http(req).then(
+        function(data){
+        console.log(data);
+      }, function(err){
+        console.log(err);
+      });
+    
+  };
+  $scope.test = function(  ){
+    $scope.getMatchedBy( );
+  };
   
 });
 //////////////////////////////////////////////////////////////////////////////// MOVIES
 matchApp.controller("movieController", function($scope, $http, $cookies){
   $scope.dbURL = "http://api.themoviedb.org/3/search/movie?";
   $scope.type = "Movie";
+  
+  
+  // USER SESSIONS
   $scope.allMovies =[
       ];
         
@@ -175,7 +237,7 @@ matchApp.controller("movieController", function($scope, $http, $cookies){
   
 });
 
-matchApp.controller("sessionController", function($scope, $http, $cookies){
+matchApp.controller("sessionController", function($scope, $http, $cookies, $window, $location){
   $scope.route = "http://52.24.232.83:8080/netflixandchill/";
   
   $scope.loginUser = "";
@@ -207,8 +269,16 @@ matchApp.controller("sessionController", function($scope, $http, $cookies){
       },
     };
     $http(req).then( function(result){ 
-      console.log( result); 
-      
+      console.log( result.data.id); 
+      if( result.data.id !== undefined ){
+        $scope.setSession(result.data.id  );
+        user = result.data;
+        url = "/netflixnchill/preferences.html";
+        //console.log(url);
+        $window.location.href = url ;
+      }else{
+        alert("El usuario no existe");
+      }
     }, function(err){
       console.log("error :" + err); 
       

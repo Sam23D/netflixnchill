@@ -24,7 +24,7 @@
             <span>Password</span>
             <input id="password" name="password" ng-model="loginPassword" type="password" placeholder="Password">
             </label>
-            <button class="button" ng-click="logIn()" type="button">Login</button>
+            <button class="button" id="login" ng-click="logIn()" type="button">Login</button>
             </fieldset>
         </form>
     </div>
@@ -34,7 +34,7 @@
             <fieldset class="textbox">
                 <label class="username">
                     <span>User</span>
-                    <input id="new_user" name="username" ng-model="registerUser" type="text" autocomplete="on" placeholder="Username">
+                    <input id="new_user" name="username"  ng-model="registerUser" type="text" autocomplete="on" placeholder="Username">
                 </label>
                 <label class="password">
                     <span>Password</span>
@@ -50,9 +50,9 @@
                 </label>
                 <label class="username">
                     <span>Phone</span>
-                    <input id="pass2" name="password" ng-model="registerPhone" type="text" placeholder="+52 614 213-4679">
+                    <input id="pass2" name="password"  ng-model="registerPhone" type="text" placeholder="+52 614 213-4679">
                 </label>
-                <button class="submit button" ng-click="register()" type="button">Register</button>
+                <button id="register" class="submit button" ng-click="register()" type="button">Register</button>
             </fieldset>
         </form>
     </div>

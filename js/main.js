@@ -5,7 +5,7 @@ app.controller("myCtrl", function($scope){
   $scope.nombre = 'samuel';
 
 });*/
-
+var vanish;
 $(document).ready(function() {
     $('.movie').click(function () {
         $(this).toggleClass('selected');
@@ -40,6 +40,22 @@ $(document).ready(function() {
     });
         return false;
     });
+    
+    $('#register').click( function() {
+        $('#mask , .login-popup').fadeOut(300 , function() {
+        $('#mask').remove();
+    });
+        return false;
+    });
+    
+    $('#login').click( function() {
+        $('#mask , .login-popup').fadeOut(300 , function() {
+        $('#mask').remove();
+    });
+        return false;
+    });
+    
+    
 });
 
 
