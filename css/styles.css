@@ -261,10 +261,16 @@ form.signin input::-webkit-input-placeholder {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
+    -webkit-filter: grayscale(60%); 
+    filter: grayscale(60%);
 
 }
 .selected {
     outline: 2px dashed #27ae60;
     outline-offset: 3px;
-    
+    -webkit-filter: saturate(3); 
+    filter: saturate(3);
+    -webkit-filter: grayscale(0%); filter: 
+    grayscale(0%);
+
 }
