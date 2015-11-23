@@ -34,7 +34,10 @@
           <img class="pure-img" src="http://www.gravatar.com/avatar/91f59d189fd3c9d2ee3d7d270bd67373?s=500" >      
           <p class="name"><i class="fa fa-user"></i> {{currentUser.name}}</p>
           <p class="tel"><i class="fa fa-whatsapp whats"></i> {{currentUser.tel}}</p>
-          <button ng-click="test()">Test</button>
+          <button ng-click="getMatchedTo()">getMatchedTo</button>
+          <button ng-click="getMatchedBy()">getMatchedBy</button>
+          <button ng-click="matchTo()">matchTo</button>
+          <button ng-click="getUserByName('Alex Rodriguez')">matched Users</button>
           
         </div>                    <!-- END USER PROFILE -->
         <div class="pure-u-1-5">
@@ -42,12 +45,12 @@
         <div class="pure-u-1"  >    <!-- MATCHED USERS  -->
           <h4><i class="fa fa-users"></i> You were matched with:</h4>
           
-          <div class="pure-u-1 matched" ng-click="toggleChill(user.name)" ng-repeat=" user in allUsers "> <!-- ELEMENT TO BE REPEATED -->
-            <p>{{user.name}}</p>
-            <span ng-show="!isMatchedTo(user.name)" class="chill-with"><i class="fa fa-fire"></i> chill with</span>
-            <span ng-show="isMatchedTo(user.name)" class="not-really"><i class="fa fa-fire-extinguisher"></i> not really</span>
-            <span ng-show="isMatchedTo(user.name) && isMatchedBy(user.name)  " class=""><i class="fa fa-whatsapp whats"></i> <p>{{user.tel}}</p></span>
-            <span ng-show="isMatchedTo(user.name) && !isMatchedBy(user.name)" class=""><i class="fa fa-clock-o"></i> <p>waitting for match</p></span>
+          <div class="pure-u-1 matched" ng-click="toggleChill(user.username)" ng-repeat=" user in allUsers "> <!-- ELEMENT TO BE REPEATED -->
+            <p>{{user.username}}</p>
+            <span ng-show="!isMatchedTo(user.username)" class="chill-with"><i class="fa fa-fire"></i> chill with</span>
+            <span ng-show="isMatchedTo(user.username)" class="not-really"><i class="fa fa-fire-extinguisher"></i> not really</span>
+            <span ng-show="isMatchedTo(user.username) && isMatchedBy(user.username)  " class=""><i class="fa fa-whatsapp whats"></i> <p>{{user.phone}}</p></span>
+            <span ng-show="isMatchedTo(user.username) && !isMatchedBy(user.username)" class=""><i class="fa fa-clock-o"></i> <p>waitting for match</p></span>
           </div>
           
           

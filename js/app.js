@@ -7,7 +7,7 @@ var user = "" ;
 matchApp.controller('matchController', function($scope, $http, $cookies){
   
   $scope.getCurrentUserId = function(){
-    //console.log( "Current user is: " + $cookies.getObject("user"));
+    console.log( "Current user is: " + $cookies.getObject("user"));
     return $cookies.getObject("user");
     
   };
@@ -20,7 +20,6 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
   console.log( $scope.currentUser );
   // { name:"", tel:"", img:""}
   $scope.allUsers = [
-      { name:"Samuel Blanco",   tel:"526142406190",       mail:"samuel@mail.com"},
       { name:"Alex Rodriguez",  tel:"+1-202-555-0132",    mail:"alex@mail.com"},
       { name:"Francisco Tejon", tel:"+1-202-444-0143",    mail:"tejon@mail.com"},
       { name:"David Saenz",     tel:"+1-202-333-0140",    mail:"david@mail.com"},
@@ -29,17 +28,59 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
       { name:"Sofia Terrazas",  tel:"+1-202-555-0140",    mail:"david@mail.com"}
     
     ];
+  
   $scope.matchedTo = [
-      { name:"Alex Rodriguez"},
-      { name:"Francisco Tejon"},
-      { name:"David Saenz"},
-      { name:"Sofia Terrazas"},
+     
     ];
   $scope.matchedBy = [
       { name:"David Saenz"},
       { name:"Sofia Terrazas"},
     ];
   // CHILLING METHODS
+  $scope.getUserByName = function( name ){
+    // get user by name 
+    for( i = 0 ; i < $scope.allUsers.length ; i++ ){
+      if( $scope.allUsers[i].username == name ){
+        return $scope.allUsers[i];
+      }
+    }
+    
+  };
+  $scope.matchTo = function( usrId ){
+    req = {
+      url : serverRoute + "matchedTo",
+      method : "POST",
+      data : { 
+        "fromId" : $scope.getCurrentUserId(),
+        "toId" : usrId
+      }
+    };
+    
+    $http(req).then(
+        function(response){
+        console.log(response.data);
+      }, function(err){
+        console.log(err);
+      });
+  };
+  $scope.unmatchTo = function( usrId ){
+    req = {
+      url : serverRoute + "matchedTo",
+      method : "DELETE",
+      data : { 
+        "from_id" : $scope.getCurrentUserId(),
+        "to_id" : usrId
+      }
+    };
+    
+    $http(req).then(
+        function(response){
+        console.log(response.data);
+      }, function(err){
+        console.log(err);
+      });
+  };
+  
   $scope.toggleChill = function( name ){
     if ( $scope.isMatchedTo(name) ){
       $scope.unchill( name );    
@@ -51,20 +92,22 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     $scope.matchedTo.push( $scope.getUserByName(name) );
     // post user for chill
     console.log("agregado "+ name);
+    $scope.matchTo($scope.getUserByName(name).id);
   };
   $scope.unchill = function( name ){
     for( i =0 ; i < $scope.matchedTo.length ; i++  ){
-      if( $scope.matchedTo[i].name == name ){
+      if( $scope.matchedTo[i].username == name ){
         $scope.matchedTo.splice(i,1);
         console.log("removido "+ name);
       }
     }
+    $scope.unmatchTo($scope.getUserByName(name).id);
     //delete user for chill
   };
   // MATCHED VERIFICATION METHODS
   $scope.isMatchedBy = function( name ){
     for( i=0 ; i < $scope.matchedBy.length ; i++){
-      if( $scope.matchedBy[i].name == name ){
+      if( $scope.matchedBy[i].username == name ){
         return true;
       }
     }     
@@ -72,7 +115,7 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
   };
   $scope.isMatchedTo = function( name ){
     for( i=0 ; i < $scope.matchedTo.length ; i++){
-      if( $scope.matchedTo[i].name == name ){
+      if( $scope.matchedTo[i].username == name ){
         return true;
       }
     } 
@@ -81,18 +124,23 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
   };
   // GETTERS AND SETTERS METHODS
   
-  $scope.getUserByName = function( name ){
-    // get user by name 
-    for( i = 0 ; i < $scope.allUsers.length ; i++ ){
-      if( $scope.allUsers[i].name == name ){
-        return $scope.allUsers[i];
-      }
-    }
-  };
   $scope.getMatchedUsers = function(){
     //$scope.allUsers = get all matched users
-    
+    req = {
+      url : serverRoute + "users/",
+      method: "GET",
+    };
+    console.log("GET-");
+    console.log(req);
+    $http(req).then(
+      function(response){
+      console.log(response.data);
+      $scope.allUsers = response.data; 
+    },function(err){
+      console.log(err);
+    });
   };
+  $scope.getMatchedUsers();
   $scope.getMatchedBy = function(){
     //$scope.matchedBy = get all matchedTo users
     req = {
@@ -104,7 +152,7 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     $http(req).then(
       function(response){
       console.log(response.data);
-      $scope.matchedBy = response.data; 
+      //$scope.matchedBy = response.data; 
     },function(err){
       console.log(err);
     });
@@ -120,31 +168,13 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     console.log(req);
     $http(req).then(
       function(response){
-      console.log(response.data);
-      $scope.matchedTo = response.data;
+      console.log(response);
+      //$scope.matchedTo = response.data;
     },function(err){
       console.log(err);
     });
   };
-  $scope.matchTo = function( usrId ){
-    req = {
-      url : serverRoute + "matchedTo",
-      method : "POST",
-      data : { 
-        "fromId" : $scope.getCurrentUserId(),
-        "toId" : usrId
-      }
-      
-    };
-    
-    $http(req).then(
-        function(response){
-        console.log(response.data);
-      }, function(err){
-        console.log(err);
-      });
-    
-  };
+  
   $scope.test = function(  ){
     $scope.getMatchedTo( );
   };
