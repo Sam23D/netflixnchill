@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -73,7 +73,7 @@
                 ng-click="toggleMovie(movie.id)" 
                 class="movie"
                 ng-class="selectionClass(movie.id)"
-                src="http://image.tmdb.org/t/p/w92{{movie.poster_path}}"/>
+                ng-src="{{getMoviePoster(movie.id)}}"/>
                 
             </div>
             

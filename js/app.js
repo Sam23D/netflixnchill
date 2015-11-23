@@ -1,6 +1,6 @@
 
 var matchApp = angular.module("matchApp", []);
-var api = "16fba1d36fc694ecddc5dfba908bcd8e" 
+var api = "16fba1d36fc694ecddc5dfba908bcd8e" ;
 
 matchApp.controller('matchController', function($scope){
   
@@ -99,6 +99,25 @@ matchApp.controller("movieController", function($scope, $http){
   $scope.myMovies = [
       ];
   // SELECTION AN DESELECTION OF MOVIES
+  $scope.getMovieById = function( movieID ){
+    for( i =0 ; i< $scope.allMovies.length ; i++){
+      if( $scope.allMovies[i].id == movieID ){
+        return $scope.allMovies[i];
+      }
+    }
+    return false ;
+  };
+  $scope.getMoviePoster = function(movieID){
+    movie = $scope.getMovieById( movieID );
+    console.log(movie.poster_path);
+    if( movie.poster_path  ){
+      result = "http://image.tmdb.org/t/p/w92"+ movie.poster_path; 
+      return result ;
+      
+    }else{
+      return "img/netflix.jpg";
+    }
+  };
   $scope.isSelectedMovie = function( movieID){ // CHECKS IF MOVIE IN myMovies
     for( i =0 ; i< $scope.myMovies.length ; i++){
       if( $scope.myMovies[i].id == movieID ){
@@ -115,16 +134,16 @@ matchApp.controller("movieController", function($scope, $http){
     }
   };
   $scope.selectMovie = function( movieID ){
-    $http.get("http://www.omdbapi.com/?i=" + movieID).success(
-      function(response){
-        $scope.myMovies.push(response);
-        console.log("added: " + movieID);
-    });
+    
+    movieToAdd = $scope.getMovieById(movieID);
+    if( movieToAdd !== false ){
+      $scope.myMovies.push( movieToAdd );
+    }
     // POST TO CREATE RELATION USR-MOVIE
   };
   $scope.deselectMovie = function( movieID ){
     for( i =0 ; i< $scope.myMovies.length ; i++){
-      if( $scope.myMovies[i].imdbID == movieID ){
+      if( $scope.myMovies[i].id == movieID ){
         console.log( "removed " + $scope.myMovies.splice(i,1) );
       }
     }
@@ -144,7 +163,7 @@ matchApp.controller("movieController", function($scope, $http){
       function(response){
         if(response.results){
           $scope.allMovies = response.results;
-          console.log($scope.allMovies)
+          //console.log($scope.allMovies);
         }else{
           $scope.allMovies =[];
 
