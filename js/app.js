@@ -1,5 +1,6 @@
 
 var matchApp = angular.module("matchApp", []);
+var api = "16fba1d36fc694ecddc5dfba908bcd8e" 
 
 matchApp.controller('matchController', function($scope){
   
@@ -90,7 +91,7 @@ matchApp.controller('matchController', function($scope){
 });
 //////////////////////////////////////////////////////////////////////////////// MOVIES
 matchApp.controller("movieController", function($scope, $http){
-  $scope.dbURL = "http://www.omdbapi.com/?";
+  $scope.dbURL = "http://api.themoviedb.org/3/search/movie?";
   $scope.type = "Movie";
   $scope.allMovies =[
       ];
@@ -100,7 +101,7 @@ matchApp.controller("movieController", function($scope, $http){
   // SELECTION AN DESELECTION OF MOVIES
   $scope.isSelectedMovie = function( movieID){ // CHECKS IF MOVIE IN myMovies
     for( i =0 ; i< $scope.myMovies.length ; i++){
-      if( $scope.myMovies[i].imdbID == movieID ){
+      if( $scope.myMovies[i].id == movieID ){
         return true;
       }
     }
@@ -139,12 +140,14 @@ matchApp.controller("movieController", function($scope, $http){
   };
   //SEARCH BAR 
   $scope.fetchMovies = function( ){
-    $http.get("http://www.omdbapi.com/?s=" + $scope.movieSearchParameter + "&type=" + $scope.type ).success(
+    $http.get("http://api.themoviedb.org/3/search/movie?api_key="+api+"&query=" + $scope.movieSearchParameter).success(
       function(response){
-        if(response.Search){
-          $scope.allMovies = response.Search;
+        if(response.results){
+          $scope.allMovies = response.results;
+          console.log($scope.allMovies)
         }else{
           $scope.allMovies =[];
+
         }
     });
   };

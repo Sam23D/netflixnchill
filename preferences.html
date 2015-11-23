@@ -67,13 +67,13 @@
                 </form>
             </div>                                        <!-- END MOVIE SEARCH BAR -->
             <!-- MOVIE LIST -->
-            <div id="{{movie.imdbID}}" class="pure-u-1-3" ng-repeat="movie in allMovies">
-              <p class="title">{{movie.Title}}</p>
+            <div id="{{movie.id}}" class="pure-u-1-3" ng-repeat="movie in allMovies">
+              <p class="title">{{movie.title}}</p>
               <img 
-                ng-click="toggleMovie(movie.imdbID)" 
+                ng-click="toggleMovie(movie.id)" 
                 class="movie"
-                ng-class="selectionClass(movie.imdbID)"
-                src="img/straightoutta.jpg"/>
+                ng-class="selectionClass(movie.id)"
+                src="http://image.tmdb.org/t/p/w92{{movie.poster_path}}"/>
                 
             </div>
             
