@@ -102,8 +102,9 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     console.log("GET-");
     console.log(req);
     $http(req).then(
-      function(result){
-      console.log(result);
+      function(response){
+      console.log(response.data);
+      $scope.matchedBy = response.data; 
     },function(err){
       console.log(err);
     });
@@ -118,8 +119,9 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     console.log("GET-");
     console.log(req);
     $http(req).then(
-      function(result){
-      console.log(result);
+      function(response){
+      console.log(response.data);
+      $scope.matchedTo = response.data;
     },function(err){
       console.log(err);
     });
@@ -136,15 +138,15 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     };
     
     $http(req).then(
-        function(data){
-        console.log(data);
+        function(response){
+        console.log(response.data);
       }, function(err){
         console.log(err);
       });
     
   };
   $scope.test = function(  ){
-    $scope.getMatchedBy( );
+    $scope.getMatchedTo( );
   };
   
 });
