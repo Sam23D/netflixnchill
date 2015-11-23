@@ -267,8 +267,6 @@ form.signin input::-webkit-input-placeholder {
 }
 .selected {
     outline: 2px dashed #27ae60;
-    outline-offset: 3px;
-    -webkit-filter: saturate(3); 
     filter: saturate(3);
     -webkit-filter: grayscale(0%); filter: 
     grayscale(0%);
