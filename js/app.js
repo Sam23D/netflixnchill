@@ -20,21 +20,12 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
   console.log( $scope.currentUser );
   // { name:"", tel:"", img:""}
   $scope.allUsers = [
-      { name:"Alex Rodriguez",  tel:"+1-202-555-0132",    mail:"alex@mail.com"},
-      { name:"Francisco Tejon", tel:"+1-202-444-0143",    mail:"tejon@mail.com"},
-      { name:"David Saenz",     tel:"+1-202-333-0140",    mail:"david@mail.com"},
-      { name:"Martin Guzman",   tel:"+1-202-222-0111  ",  mail:"martin@mail.com"},
-      { name:"Mario Contreras", tel:"+1-202-111-0154",    mail:"mario@mail.com"},
-      { name:"Sofia Terrazas",  tel:"+1-202-555-0140",    mail:"david@mail.com"}
-    
     ];
   
   $scope.matchedTo = [
      
     ];
   $scope.matchedBy = [
-      { name:"David Saenz"},
-      { name:"Sofia Terrazas"},
     ];
   // CHILLING METHODS
   $scope.getUserByName = function( name ){
@@ -44,6 +35,18 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
         return $scope.allUsers[i];
       }
     }
+    
+  };
+  $scope.getUserById = function( ){
+    //$scope.matchedBy = get all matchedTo users
+    for( i = 0 ; i < $scope.allUsers.length ; i++ ){
+      if( $scope.allUsers[i].id == $scope.getCurrentUserId() ){
+        $scope.currentUser = $scope.allUsers[i];
+        console.log($scope.allUsers[i]);
+        return $scope.allUsers[i];
+      }
+    }
+    
     
   };
   $scope.getMatchedBy = function(){
@@ -75,12 +78,14 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
       function(response){
       console.log(response);
       $scope.matchedTo = response.data;
+      
     },function(err){
       console.log(err);
     });
   };
   $scope.getMatchedTo();
   $scope.getMatchedBy();
+  
   $scope.matchTo = function( usrId ){
     req = {
       url : serverRoute + "matchedTo",
@@ -176,13 +181,16 @@ matchApp.controller('matchController', function($scope, $http, $cookies){
     $http(req).then(
       function(response){
       console.log(response.data);
-      $scope.allUsers = response.data; 
+      $scope.allUsers = response.data;
+      
+      $scope.getUserById();
     },function(err){
       console.log(err);
     });
   };
   $scope.getMatchedUsers();
   
+  $scope.getUserById();
   
   $scope.test = function(  ){
     $scope.getMatchedTo( );

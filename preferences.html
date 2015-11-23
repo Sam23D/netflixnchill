@@ -32,14 +32,15 @@
         </div>
         <div class="pure-u-3-5"> <!-- USER PROFILE INFORMATION -->
           <img class="pure-img" src="http://www.gravatar.com/avatar/91f59d189fd3c9d2ee3d7d270bd67373?s=500" >      
-          <p class="name"><i class="fa fa-user"></i> {{currentUser.name}}</p>
-          <p class="tel"><i class="fa fa-whatsapp whats"></i> {{currentUser.tel}}</p>
+          <p class="name"><i class="fa fa-user"></i> {{currentUser.username}}</p>
+          <p class="tel"><i class="fa fa-whatsapp whats"></i> {{currentUser.phone}}</p>
           <!--
           <button ng-click="getMatchedTo()">getMatchedTo</button>
           <button ng-click="getMatchedBy()">getMatchedBy</button>
           <button ng-click="matchTo()">matchTo</button>
-          <button ng-click="getUserByName('Alex Rodriguez')">matched Users</button>
           -->
+          <button ng-click="getUserById()">Get user</button>
+          
         </div>                    <!-- END USER PROFILE -->
         <div class="pure-u-1-5">
         </div>
