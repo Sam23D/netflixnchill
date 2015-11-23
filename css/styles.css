@@ -240,6 +240,9 @@ form.signin input::-webkit-input-placeholder {
   padding:0;
   margin-top:2em;
 }
+.billboard{
+  
+}
 .search-movie{
   color:black;
   font-family: "babas";
@@ -249,9 +252,11 @@ form.signin input::-webkit-input-placeholder {
 .title {
     text-align: center;
     font-family: 'Roboto', sans-serif;
+    height: 3em;
 }
 
 .movie {
+    
     width:8em;
     -webkit-box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 14px 34px -4px rgba(0,0,0,0.75);
@@ -260,10 +265,9 @@ form.signin input::-webkit-input-placeholder {
     margin: 0 auto ;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
-    border-radius: 8px;
+    border-radius: 5px;
     -webkit-filter: grayscale(60%); 
     filter: grayscale(60%);
-
 }
 .selected {
     outline: 2px dashed #27ae60;

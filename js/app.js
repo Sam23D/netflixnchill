@@ -1,5 +1,5 @@
 
-var matchApp = angular.module("matchApp", []);
+var matchApp = angular.module("matchApp", ["ngCookies"]);
 var api = "16fba1d36fc694ecddc5dfba908bcd8e" ;
 
 matchApp.controller('matchController', function($scope){
@@ -90,7 +90,7 @@ matchApp.controller('matchController', function($scope){
   
 });
 //////////////////////////////////////////////////////////////////////////////// MOVIES
-matchApp.controller("movieController", function($scope, $http){
+matchApp.controller("movieController", function($scope, $http, $cookies){
   $scope.dbURL = "http://api.themoviedb.org/3/search/movie?";
   $scope.type = "Movie";
   $scope.allMovies =[
@@ -169,6 +169,78 @@ matchApp.controller("movieController", function($scope, $http){
 
         }
     });
+  };
+  route = "http://52.24.232.83:8080/netflixandchill/";
+  
+  
+});
+
+matchApp.controller("sessionController", function($scope, $http, $cookies){
+  $scope.route = "http://52.24.232.83:8080/netflixandchill/";
+  
+  $scope.loginUser = "";
+  $scope.loginPassword = "";
+  
+  $scope.registerUser = "";
+  $scope.registerPassword = "";
+  $scope.registerRePassword = "";
+  $scope.registerPhone = "";
+  $scope.registerEmail = "";
+  
+  $scope.test = function(){
+    console.log($cookies.getAll());
+  };
+  $scope.setSession = function( usrName ){
+    $cookies.put("user", usrName);
+  };
+  $scope.logIn = function(){
+    req = {
+      method: "POST",
+      url : $scope.route + "login/",
+      headers:{
+        "Content-Type": "application/x-www-form-urlencoded", 
+        "Accept": "*/*"
+      },
+      data : {
+          name: $scope.loginUser,
+          password: $scope.loginPassword,
+      },
+    };
+    $http(req).then( function(result){ 
+      console.log( result); 
+      
+    }, function(err){
+      console.log("error :" + err); 
+      
+    });
+  };
+  
+  $scope.register = function(){
+    req = {
+      method: "POST",
+      url : $scope.route + "register/",
+      headers:{
+        "Content-Type": "application/x-www-form-urlencoded", 
+        "Accept": "*/*",
+      },
+      data : {
+          name: $scope.registerUser,
+          password: $scope.registerPassword,
+          phone : $scope.registerPhone,
+          email:$scope.registerEmail
+      },
+    };
+    $http(req).then( function(result){ 
+      console.log( result); 
+      
+    }, function(err){
+      console.log("error :" + err); 
+      
+    } );
+    
+  };
+  $scope.test = function(){
+    console.log($cookies.getAll());
   };
   
 });
