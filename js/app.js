@@ -2,6 +2,9 @@
 var matchApp = angular.module("matchApp", []);
 
 matchApp.controller('matchController', function($scope){
+  
+  $scope.currentUser = { name:"Samuel Blanco", tel:"526142406190", mail : "samuel.drach@gmail.com" };
+  
   // { name:"", tel:"", img:""}
   $scope.allUsers = [
       { name:"Samuel Blanco",   tel:"526142406190",       mail:"samuel@mail.com"},
@@ -85,7 +88,7 @@ matchApp.controller('matchController', function($scope){
   
   
 });
-
+//////////////////////////////////////////////////////////////////////////////// MOVIES
 matchApp.controller("movieController", function($scope, $http){
   $scope.dbURL = "http://www.omdbapi.com/?";
   $scope.type = "Movie";
