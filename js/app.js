@@ -322,8 +322,9 @@ matchApp.controller("sessionController", function($scope, $http, $cookies, $wind
       if( result.data.id !== undefined ){
         $scope.setSession(result.data.id  );
         user = result.data;
-        url = "/netflixnchill/preferences.html";
+        url = "preferences.html";
         //console.log(url);
+        //console.log( $window.location );
         $window.location.href = url ;
       }else{
         alert("El usuario no existe");
