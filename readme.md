@@ -6,8 +6,9 @@
 + we watch series
 + expect us
 + 
+
 ### What is this
 
-It ss the front end page for a web application developed in java for a school project
+It is the front end page for a web application developed in java for a school project
 it helps people find partners with common preferences on movies and... "chilling", mainly
 done with Angular1 and Javascript 
